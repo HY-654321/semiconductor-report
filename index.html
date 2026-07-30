@@ -56,6 +56,18 @@
   h2 { font-size: 20px; font-weight: 600; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 2px solid var(--purple); cursor: pointer; user-select: none; display: flex; align-items: center; gap: 10px; transition: color 0.15s; }
   h2:hover { color: #3c3489; }
   h2::before { content: '▾'; font-size: 16px; color: #534ab7; transition: transform 0.2s; display: inline-block; }
+
+  .toggle-chip {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 14px; border-radius: 20px;
+    background: #f0f0f0; color: #5F5E5A;
+    cursor: pointer; user-select: none;
+    font-size: 13px; font-weight: 500;
+    border: 0.5px solid #d3d1c7;
+    transition: background 0.15s;
+  }
+  .toggle-chip:hover { background: #e0e0e0; }
+  .toggle-chip.collapsed { background: #faeeda; color: #854f0b; border-color: #f5c4b3; }
   h2.collapsed::before { transform: rotate(-90deg); }
   h3 { font-size: 16px; font-weight: 600; margin: 24px 0 12px; color: var(--purple); }
   h4 { font-size: 14px; font-weight: 600; margin: 16px 0 8px; }
@@ -582,7 +594,8 @@
 <!-- 三、资金流向 -->
 <h2>三、资金流向与利润分配模型</h2>
 <div class="card">
-  <h3>终端收入 → 产业链分配路径</h3>
+  <h3 onclick="var d=this.nextElementSibling;var v=d.style.display==='none'?'':'none';d.style.display=v;this.classList.toggle('collapsed');" class="toggle-chip">半导体成本 ▾</h3>
+  <div class="cost-section">
   <p style="color:var(--text-secondary);margin-bottom:16px;">以一台售价$1,000的AI服务器为例，追踪终端收入如何在上中下游各环节分配：</p>
 
   <div class="flow-diagram" style="font-size:12px;gap:4px;">
@@ -605,6 +618,8 @@
     <div class="flow-box" style="background:var(--coral-light);min-width:100px;">
       <strong>$40-80</strong><br><span style="font-size:11px;color:var(--text-muted);">最终利润</span>
     </div>
+  </div>
+
   </div>
 
   <h3>各环节利润分配占比</h3>
