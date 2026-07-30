@@ -59,12 +59,13 @@
 
   .toggle-chip {
     display: inline-flex; align-items: center; gap: 6px;
-    padding: 6px 14px; border-radius: 20px;
+    padding: 5px 12px; border-radius: 16px;
     background: #f0f0f0; color: #5F5E5A;
     cursor: pointer; user-select: none;
-    font-size: 13px; font-weight: 500;
+    font-size: 12px; font-weight: 500;
     border: 0.5px solid #d3d1c7;
-    transition: background 0.15s;
+    margin: 8px 0 4px 16px;
+    transition: background 0.15s, color 0.15s;
   }
   .toggle-chip:hover { background: #e0e0e0; }
   .toggle-chip.collapsed { background: #faeeda; color: #854f0b; border-color: #f5c4b3; }
@@ -594,8 +595,8 @@
 <!-- 三、资金流向 -->
 <h2>三、资金流向与利润分配模型</h2>
 <div class="card">
-  <h3 onclick="var d=this.nextElementSibling;var v=d.style.display==='none'?'':'none';d.style.display=v;this.classList.toggle('collapsed');" class="toggle-chip">半导体成本 ▾</h3>
-  <div class="cost-section">
+  <h3 onclick="var d=this.nextElementSibling;var v=d.style.display==='none'?'':'none';d.style.display=v;this.classList.toggle('collapsed');" class="toggle-chip" style="margin-left:16px;">半导体成本 ▾</h3>
+  <div class="cost-section" style="margin-left:16px;">
   <p style="color:var(--text-secondary);margin-bottom:16px;">以一台售价$1,000的AI服务器为例，追踪终端收入如何在上中下游各环节分配：</p>
 
   <div class="flow-diagram" style="font-size:12px;gap:4px;">
