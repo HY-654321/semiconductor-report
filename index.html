@@ -254,6 +254,22 @@
   }
   .toc-sub-link:hover { background: #f0f0f0; color: var(--purple); }
   .toc-sub-link::before { content: '•'; color: var(--text-muted); margin-right: 6px; }
+
+  /* 二级子标签 */
+  .sub-tabs {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin: 8px 0 0 16px;
+  }
+  .sub-tab {
+    display: inline-block; padding: 4px 12px; border-radius: 14px;
+    background: #fff; color: var(--text-secondary);
+    font-size: 12px; font-weight: 500;
+    text-decoration: none;
+    border: 0.5px solid var(--border);
+    transition: all 0.15s;
+  }
+  .sub-tab:hover { background: #eeedfe; color: var(--purple); border-color: var(--purple); }
+  .sub-tab.active { background: var(--purple); color: #fff; border-color: var(--purple); }
 </style>
 </head>
 <body>
@@ -348,6 +364,10 @@
 
 <!-- 一、产业链全景图谱 -->
 <h2 id="sec-1">一、产业链全景图谱</h2>
+<div class="sub-tabs">
+  <a class="sub-tab" href="#sub-1-1">1. 半导体收入分布</a>
+  <a class="sub-tab" href="#sub-1-2">2. 产业链结构</a>
+</div>
 <div class="card">
   <p style="color:var(--text-secondary);margin-bottom:16px;">半导体产业链呈现<strong>「上游支撑层 → 中游制造层 → 下游应用层」</strong>三层闭环结构。全球产业格局显著分化：美欧垄断高端芯片设计与EDA/IP，日韩主导存储与材料，中国台湾把持先进制造与封测产能，中国大陆加速国产替代。</p>
 
@@ -572,6 +592,10 @@
 
 <!-- 二、终端收入来源 -->
 <h2 id="sec-2">二、终端收入来源分析</h2>
+<div class="sub-tabs">
+  <a class="sub-tab" href="#sub-2-2">2. 终端应用分布</a>
+  <a class="sub-tab" href="#sub-2-1">1. 资金流转分析</a>
+</div>
 <div class="card">
   <h3>终端应用市场分布 (2025年, Gartner)</h3>
 
@@ -1159,8 +1183,8 @@ if (document.readyState === 'complete') {
       if (collapsed) setCollapsed(h2, true);
     });
 
-    // 目录点击 → 自动展开目标章节 + 滚动
-    document.querySelectorAll('.toc-link, .toc-sub-link').forEach(function(link) {
+    // 目录/子标签点击 → 自动展开目标章节 + 滚动
+    document.querySelectorAll('.toc-link, .toc-sub-link, .sub-tab').forEach(function(link) {
       link.addEventListener('click', function(e) {
         var href = this.getAttribute('href');
         if (!href || !href.startsWith('#')) return;
@@ -1182,7 +1206,6 @@ if (document.readyState === 'complete') {
         // 滚动到位
         setTimeout(function() {
           target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          // 更新 URL hash 不触发额外滚动
           history.replaceState(null, '', href);
         }, 50);
       });
