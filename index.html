@@ -1158,6 +1158,35 @@ if (document.readyState === 'complete') {
       });
       if (collapsed) setCollapsed(h2, true);
     });
+
+    // 目录点击 → 自动展开目标章节 + 滚动
+    document.querySelectorAll('.toc-link, .toc-sub-link').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        var href = this.getAttribute('href');
+        if (!href || !href.startsWith('#')) return;
+        var target = document.querySelector(href);
+        if (!target) return;
+        e.preventDefault();
+
+        // 找到包含这个锚点元素的 h2 章节，并展开
+        var h2 = target.closest('.card') || target;
+        while (h2 && h2.tagName !== 'H2' && h2.parentElement) {
+          h2 = h2.parentElement.previousElementSibling;
+          if (h2 && h2.tagName === 'H2') break;
+          h2 = h2.parentElement;
+        }
+        if (h2 && h2.tagName === 'H2' && h2.classList.contains('collapsed')) {
+          setCollapsed(h2, false);
+        }
+
+        // 滚动到位
+        setTimeout(function() {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // 更新 URL hash 不触发额外滚动
+          history.replaceState(null, '', href);
+        }, 50);
+      });
+    });
   }
 
   if (document.readyState === 'loading') {
