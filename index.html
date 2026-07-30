@@ -223,6 +223,37 @@
   .export-btn:hover { background: #3c3489; }
   .export-btn:active { transform: scale(0.97); }
   .export-btn svg { width: 14px; height: 14px; fill: currentColor; }
+
+  /* 目录样式 */
+  html { scroll-behavior: smooth; }
+  .toc {
+    background: #fff; border-radius: 12px;
+    border: 0.5px solid var(--border-light);
+    padding: 20px 24px; margin-bottom: 20px;
+  }
+  .toc-title {
+    font-size: 18px; font-weight: 600; color: var(--purple);
+    text-align: center; margin-bottom: 16px;
+    padding-bottom: 12px; border-bottom: 2px solid var(--purple);
+  }
+  .toc-tree { list-style: none; padding: 0; margin: 0; }
+  .toc-item { margin: 4px 0; }
+  .toc-link {
+    display: block; padding: 8px 12px; border-radius: 6px;
+    color: var(--text); text-decoration: none; font-size: 14px;
+    background: #f8f7f4; border-left: 3px solid transparent;
+    transition: all 0.15s; cursor: pointer;
+  }
+  .toc-link:hover { background: #eeedfe; border-left-color: var(--purple); color: var(--purple); }
+  .toc-link.active { background: #eeedfe; border-left-color: var(--purple); color: var(--purple); font-weight: 500; }
+  .toc-sub { list-style: none; padding: 0 0 0 24px; margin: 4px 0; }
+  .toc-sub-link {
+    display: block; padding: 5px 10px; border-radius: 4px;
+    color: var(--text-secondary); text-decoration: none; font-size: 13px;
+    transition: background 0.15s; cursor: pointer;
+  }
+  .toc-sub-link:hover { background: #f0f0f0; color: var(--purple); }
+  .toc-sub-link::before { content: '•'; color: var(--text-muted); margin-right: 6px; }
 </style>
 </head>
 <body>
@@ -238,6 +269,32 @@
 <h1>半导体产业链研究框架</h1>
 <p class="subtitle">全景分析报告 — 产业链图谱 · 子行业收入占比 · 资金流向 · 终端收入来源与行业分配</p>
 <p style="color:var(--text-muted);font-size:12px;text-align:center;">数据截至 2026年7月 | 来源：Infosys Knowledge Institute, Gartner, IDC, SIA, SEMI, 各公司公告</p>
+
+<!-- 目录 -->
+<div class="toc">
+  <div class="toc-title">半导体看板 — 目录</div>
+  <ul class="toc-tree">
+    <li class="toc-item"><a class="toc-link" href="#sec-overview">行业概览</a></li>
+    <li class="toc-item">
+      <a class="toc-link" href="#sec-1">一、产业链全景图</a>
+      <ul class="toc-sub">
+        <li><a class="toc-sub-link" href="#sub-1-1">1. 半导体收入分布</a></li>
+        <li><a class="toc-sub-link" href="#sub-1-2">2. 产业链结构</a></li>
+      </ul>
+    </li>
+    <li class="toc-item">
+      <a class="toc-link" href="#sec-2">二、终端收入来源分析</a>
+      <ul class="toc-sub">
+        <li><a class="toc-sub-link" href="#sub-2-1">1. 资金流转分析</a></li>
+        <li><a class="toc-sub-link" href="#sub-2-2">2. 终端应用分布</a></li>
+      </ul>
+    </li>
+    <li class="toc-item"><a class="toc-link" href="#sec-3">三、资金流向与利润分配</a></li>
+    <li class="toc-item"><a class="toc-link" href="#sec-4">四、AI时代的资金再分配</a></li>
+    <li class="toc-item"><a class="toc-link" href="#sec-5">五、中国半导体产业定位与国产替代</a></li>
+    <li class="toc-item"><a class="toc-link" href="#sec-6">六、关键指标监控框架</a></li>
+  </ul>
+</div>
 
 
 
@@ -262,7 +319,7 @@
 </div>
 
 <!-- 行业概览：饼图 + 细分数据（两栏布局） -->
-<h2>行业概览</h2>
+<h2 id="sec-overview">行业概览</h2>
 <div class="layout">
   <div class="card">
     <div class="chart-wrap">
@@ -290,7 +347,7 @@
 </div>
 
 <!-- 一、产业链全景图谱 -->
-<h2>一、产业链全景图谱</h2>
+<h2 id="sec-1">一、产业链全景图谱</h2>
 <div class="card">
   <p style="color:var(--text-secondary);margin-bottom:16px;">半导体产业链呈现<strong>「上游支撑层 → 中游制造层 → 下游应用层」</strong>三层闭环结构。全球产业格局显著分化：美欧垄断高端芯片设计与EDA/IP，日韩主导存储与材料，中国台湾把持先进制造与封测产能，中国大陆加速国产替代。</p>
 
@@ -508,16 +565,24 @@
 
   <h3>下游应用层 — 需求的风向标</h3>
   <p style="color:var(--text-secondary);margin-bottom:12px;">终端应用的景气度直接决定中上游各环节的需求强度。当前AI大模型训练与推理、汽车电动化智能化是行业最核心的增长引擎，贡献了行业超70%的新增需求。详细数据见下方「二、终端收入来源分析」章节。</p>
+  <div id="sub-1-1"></div>
 </div>
 
+<div id="sub-1-2"></div>
+
 <!-- 二、终端收入来源 -->
-<h2>二、终端收入来源分析</h2>
+<h2 id="sec-2">二、终端收入来源分析</h2>
 <div class="card">
   <h3>终端应用市场分布 (2025年, Gartner)</h3>
 
+  <div id="sub-2-2"></div>
   <div style="position:relative;width:100%;max-width:720px;margin:16px auto;height:340px;">
     <canvas id="terminalChart" width="720" height="340" role="img" aria-label="2025 vs 2029F 终端应用市场分布"></canvas>
   </div>
+
+  <div id="sub-2-1"></div>
+  <p style="color:var(--text-secondary);margin:16px 0 8px;font-size:13px;">—— 资金流转分析详见 <a href="#sec-3" style="color:var(--purple);">「三、资金流向与利润分配」</a> 章节 ——
+  </p>
 
   <table>
     <tr><th>终端应用</th><th>2025年收入</th><th>占比</th><th>2029F 预测</th><th>CAGR 25-29</th><th>核心驱动因素</th></tr>
@@ -593,7 +658,7 @@
 </div>
 
 <!-- 三、资金流向 -->
-<h2>三、资金流向与利润分配模型</h2>
+<h2 id="sec-3">三、资金流向与利润分配模型</h2>
 <div class="card">
   <h3 onclick="var d=this.nextElementSibling;var v=d.style.display==='none'?'':'none';d.style.display=v;this.classList.toggle('collapsed');" class="toggle-chip" style="margin-left:16px;">半导体成本 ▾</h3>
   <div class="cost-section" style="margin-left:16px;">
@@ -690,7 +755,7 @@
 </div>
 
 <!-- 四、AI时代的资金再分配 -->
-<h2>四、AI时代的资金再分配</h2>
+<h2 id="sec-4">四、AI时代的资金再分配</h2>
 <div class="card">
   <h3>AI如何重塑半导体价值链</h3>
 
@@ -742,7 +807,7 @@
 </div>
 
 <!-- 五、中国半导体产业定位 -->
-<h2>五、中国半导体产业定位与国产替代</h2>
+<h2 id="sec-5">五、中国半导体产业定位与国产替代</h2>
 <div class="card">
   <div class="two-col">
     <div>
@@ -773,7 +838,7 @@
 </div>
 
 <!-- 六、关键指标监控框架 -->
-<h2>六、关键指标监控框架</h2>
+<h2 id="sec-6">六、关键指标监控框架</h2>
 <div class="card">
   <table>
     <tr><th>监控维度</th><th>核心指标</th><th>当前状态</th><th>信号意义</th></tr>
